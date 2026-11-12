@@ -344,7 +344,7 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
     lab = ["<0.5", "0.5-1", "1-1.5", "1.5-2", ">2"]
     g = df.assign(b=pd.cut(X["load_per_berth"], bins, labels=lab)).groupby("b", observed=True).delayed.mean()
     ax[0].bar(lab, g.values * 100, color=BLUE, width=0.6)
-    ax[0].set_title("Delay rate vs ships per berth")
+    ax[0].set_title("Delay rate vs ships per berth", loc="left")
     ax[0].set_xlabel("(ships waiting + arriving in 48 h) / available berths")
     ax[0].set_ylabel("% of ships delayed >24 h")
     for i, v in enumerate(g.values):
@@ -353,8 +353,9 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
     m = df.groupby(df["arrival_time"].dt.month).delayed.mean()
     ax[1].bar(m.index, m.values * 100, color=[ORANGE if i in C.PEAK_SEASON_MONTHS else BLUE for i in m.index],
               width=0.6)
-    ax[1].set_title("Delay rate by month (orange = peak season)")
+    ax[1].set_title("Delay rate by month", loc="left")
     ax[1].set_xticks(range(1, 13), list("JFMAMJJASOND"))
+    ax[1].set_xlabel("orange = peak season (Aug-Oct)")
     ax[1].set_ylabel("% delayed")
     fig.tight_layout()
     fig.savefig(f"{FIG}/1_delay_drivers.png", dpi=200)
@@ -364,13 +365,13 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
     names = ["Rule baseline", "Logistic regression", "Gradient boosting"]
     cols = [GREY, BLUE, ORANGE]
     fig, ax = plt.subplots(1, 3, figsize=(7.2, 2.4))
-    for a, (key, title) in zip(ax, [("roc_auc", "ROC-AUC (higher = better)"),
+    for a, (key, title) in zip(ax, [("roc_auc", "ROC-AUC"),
                                     ("recall", "Delays caught (recall)"),
-                                    ("cost_per_100", "Cost per 100 ships (lower = better)".replace(" = ", "="))]):
+                                    ("cost_per_100", "Cost per 100 ships")]):
         vals = [test_res[n][key] for n in names]
         a.bar(range(3), vals, color=cols, width=0.6)
         a.set_xticks(range(3), ["Rule", "LogReg", "GBoost"])
-        a.set_title(title, fontsize=8.5)
+        a.set_title(title, fontsize=9, loc="left")
         for i, v in enumerate(vals):
             a.text(i, v * 1.02, f"{v:.2f}" if key != "cost_per_100" else f"{v:.0f}",
                    ha="center", color=INK2, fontsize=8)
@@ -385,16 +386,16 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
         fr, mp = calibration_curve(yte, probs_te[n], n_bins=8, strategy="quantile")
         ax[0].plot(mp, fr, "-o", color=c, lw=2, ms=4, label=n)
     ax[0].plot([0, 1], [0, 1], "--", color=GREY, lw=1, label="perfect")
-    ax[0].set_title("Calibration on test: predicted vs actual")
+    ax[0].set_title("Calibration (test period)", loc="left")
     ax[0].set_xlabel("predicted probability of delay")
     ax[0].set_ylabel("actual share delayed")
     ax[0].legend(fontsize=7, loc="upper left")
     ax[1].plot(grid, costs, color=BLUE, lw=2)
     ax[1].axvline(ALERT_THRESHOLD, color=ORANGE, lw=1.5, ls="--")
     ax[1].text(ALERT_THRESHOLD + 0.02, max(costs) * 0.92, "25% alert line\n(3:1 cost ratio)", color=INK2, fontsize=8)
-    ax[1].set_title("Cost vs alert threshold (walk-forward folds)", fontsize=9)
+    ax[1].set_title("Cost vs alert threshold", fontsize=9, loc="left")
     ax[1].set_xlabel("alert if probability >= threshold")
-    ax[1].set_ylabel("cost per 100 ships")
+    ax[1].set_ylabel("cost per 100 ships (validation)")
     fig.tight_layout()
     fig.savefig(f"{FIG}/3_calibration_threshold.png", dpi=200)
     plt.close(fig)
@@ -403,7 +404,7 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
     fig, ax = plt.subplots(1, 2, figsize=(7.2, 2.7), gridspec_kw=dict(width_ratios=[1.35, 1]))
     imp_s = imp.sort_values("auc_drop")
     ax[0].barh(imp_s["factor"], imp_s["auc_drop"], color=BLUE, height=0.6)
-    ax[0].set_title("What matters overall (AUC drop if shuffled)", fontsize=9)
+    ax[0].set_title("What matters (AUC drop if shuffled)", fontsize=9, loc="left")
     ax[0].tick_params(axis="y", labelsize=8)
     ct = pd.DataFrame(conf_tab)
     ax[1].bar(ct["confidence"], ct["accuracy"] * 100, color=BLUE, width=0.55)
@@ -411,7 +412,7 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
         ax[1].text(i, r["accuracy"] * 100 + 2, f"{r['accuracy']:.0%}\n(n={r['n']})", ha="center",
                    color=INK2, fontsize=7.5)
     ax[1].set_ylim(0, 118)
-    ax[1].set_title("Accuracy by confidence level (test)", fontsize=9)
+    ax[1].set_title("Accuracy by confidence", fontsize=9, loc="left")
     ax[1].set_ylabel("% correct alert decisions")
     fig.tight_layout()
     fig.savefig(f"{FIG}/4_importance_confidence.png", dpi=200)
@@ -421,7 +422,7 @@ def make_figures(df, yte, probs_te, test_res, imp, conf_tab, lc, grid, costs, ch
     fig, ax = plt.subplots(figsize=(3.5, 2.4))
     l = pd.DataFrame(lc)
     ax.plot(l["n"], l["roc_auc"], "-o", color=BLUE, lw=2, ms=4)
-    ax.set_title("How much data is needed?", fontsize=9)
+    ax.set_title("How much data is needed?", fontsize=9, loc="left")
     ax.set_xlabel("training rows")
     ax.set_ylabel("test ROC-AUC")
     fig.tight_layout()
