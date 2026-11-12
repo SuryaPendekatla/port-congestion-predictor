@@ -1,0 +1,460 @@
+{
+  "data": {
+    "rows": 2064,
+    "delay_rate": 0.2853682170542636,
+    "development": 1537,
+    "test": 526,
+    "test_delay_rate": 0.3365019011406844,
+    "missing_pct": {
+      "forecast_max_wind_kmh": 0.07751937984496124,
+      "expected_arrivals_48h": 0.055232558139534885,
+      "vessel_teu": 0.030038759689922482
+    },
+    "delay_rate_by_port": {
+      "Eastgate": 0.383,
+      "Northbay": 0.224,
+      "Southreach": 0.314,
+      "Westhaven": 0.225
+    }
+  },
+  "walk_forward": {
+    "per_fold": [
+      {
+        "fold": "Aug 2025-Oct 2025",
+        "model": "Rule baseline",
+        "n_train": 757,
+        "n_valid": 311,
+        "n": 311,
+        "delay_rate": 0.3440514469453376,
+        "roc_auc": 0.909405350925417,
+        "pr_auc": 0.8549100478240144,
+        "precision": 0.712,
+        "recall": 0.8317757009345794,
+        "f1": 0.7672413793103449,
+        "accuracy": 0.8263665594855305,
+        "alerts_pct": 0.40192926045016075,
+        "cost_per_100": 28.938906752411576,
+        "brier": NaN,
+        "log_loss": NaN,
+        "calibration_error": NaN
+      },
+      {
+        "fold": "Aug 2025-Oct 2025",
+        "model": "Logistic regression",
+        "n_train": 757,
+        "n_valid": 311,
+        "n": 311,
+        "delay_rate": 0.3440514469453376,
+        "roc_auc": 0.9232636980025655,
+        "pr_auc": 0.8930519208169192,
+        "precision": 0.7045454545454546,
+        "recall": 0.8691588785046729,
+        "f1": 0.7782426778242678,
+        "accuracy": 0.8295819935691319,
+        "alerts_pct": 0.42443729903536975,
+        "cost_per_100": 26.04501607717042,
+        "brier": 0.10008925770693902,
+        "log_loss": 0.3176273574384147,
+        "calibration_error": 0.051143712742272716
+      },
+      {
+        "fold": "Aug 2025-Oct 2025",
+        "model": "Gradient boosting",
+        "n_train": 757,
+        "n_valid": 311,
+        "n": 311,
+        "delay_rate": 0.3440514469453376,
+        "roc_auc": 0.892248488180319,
+        "pr_auc": 0.8639704345361071,
+        "precision": 0.68,
+        "recall": 0.794392523364486,
+        "f1": 0.7327586206896551,
+        "accuracy": 0.8006430868167203,
+        "alerts_pct": 0.40192926045016075,
+        "cost_per_100": 34.08360128617363,
+        "brier": 0.1158622232629841,
+        "log_loss": 0.37226611467343995,
+        "calibration_error": 0.05037546449218031
+      },
+      {
+        "fold": "Nov 2025-Jan 2026",
+        "model": "Rule baseline",
+        "n_train": 1059,
+        "n_valid": 254,
+        "n": 254,
+        "delay_rate": 0.2952755905511811,
+        "roc_auc": 0.9156052141527002,
+        "pr_auc": 0.8460282239817692,
+        "precision": 0.7671232876712328,
+        "recall": 0.7466666666666667,
+        "f1": 0.7567567567567568,
+        "accuracy": 0.8582677165354331,
+        "alerts_pct": 0.2874015748031496,
+        "cost_per_100": 29.133858267716533,
+        "brier": NaN,
+        "log_loss": NaN,
+        "calibration_error": NaN
+      },
+      {
+        "fold": "Nov 2025-Jan 2026",
+        "model": "Logistic regression",
+        "n_train": 1059,
+        "n_valid": 254,
+        "n": 254,
+        "delay_rate": 0.2952755905511811,
+        "roc_auc": 0.9471135940409683,
+        "pr_auc": 0.9017057105305338,
+        "precision": 0.7647058823529411,
+        "recall": 0.8666666666666667,
+        "f1": 0.8125,
+        "accuracy": 0.8818897637795275,
+        "alerts_pct": 0.3346456692913386,
+        "cost_per_100": 19.68503937007874,
+        "brier": 0.08402689726410964,
+        "log_loss": 0.261530063772507,
+        "calibration_error": 0.0415100195109372
+      },
+      {
+        "fold": "Nov 2025-Jan 2026",
+        "model": "Gradient boosting",
+        "n_train": 1059,
+        "n_valid": 254,
+        "n": 254,
+        "delay_rate": 0.2952755905511811,
+        "roc_auc": 0.8948230912476722,
+        "pr_auc": 0.8469635370966895,
+        "precision": 0.6867469879518072,
+        "recall": 0.76,
+        "f1": 0.7215189873417721,
+        "accuracy": 0.8267716535433071,
+        "alerts_pct": 0.32677165354330706,
+        "cost_per_100": 31.496062992125985,
+        "brier": 0.10515487955032919,
+        "log_loss": 0.3473850871273907,
+        "calibration_error": 0.042889748798467464
+      },
+      {
+        "fold": "Feb 2026-Apr 2026",
+        "model": "Rule baseline",
+        "n_train": 1321,
+        "n_valid": 215,
+        "n": 215,
+        "delay_rate": 0.25116279069767444,
+        "roc_auc": 0.9159190246146769,
+        "pr_auc": 0.8318228007493813,
+        "precision": 0.7222222222222222,
+        "recall": 0.7222222222222222,
+        "f1": 0.7222222222222222,
+        "accuracy": 0.8604651162790697,
+        "alerts_pct": 0.25116279069767444,
+        "cost_per_100": 27.906976744186046,
+        "brier": NaN,
+        "log_loss": NaN,
+        "calibration_error": NaN
+      },
+      {
+        "fold": "Feb 2026-Apr 2026",
+        "model": "Logistic regression",
+        "n_train": 1321,
+        "n_valid": 215,
+        "n": 215,
+        "delay_rate": 0.25116279069767444,
+        "roc_auc": 0.9605475040257649,
+        "pr_auc": 0.9091735925882726,
+        "precision": 0.7258064516129032,
+        "recall": 0.8333333333333334,
+        "f1": 0.7758620689655172,
+        "accuracy": 0.8790697674418605,
+        "alerts_pct": 0.28837209302325584,
+        "cost_per_100": 20.46511627906977,
+        "brier": 0.0703742641696923,
+        "log_loss": 0.2246707594493819,
+        "calibration_error": 0.041601621514370836
+      },
+      {
+        "fold": "Feb 2026-Apr 2026",
+        "model": "Gradient boosting",
+        "n_train": 1321,
+        "n_valid": 215,
+        "n": 215,
+        "delay_rate": 0.25116279069767444,
+        "roc_auc": 0.950655624568668,
+        "pr_auc": 0.8930774616286492,
+        "precision": 0.7586206896551724,
+        "recall": 0.8148148148148148,
+        "f1": 0.7857142857142857,
+        "accuracy": 0.8883720930232558,
+        "alerts_pct": 0.26976744186046514,
+        "cost_per_100": 20.46511627906977,
+        "brier": 0.07640912839282485,
+        "log_loss": 0.2457212908378189,
+        "calibration_error": 0.044533643777044975
+      }
+    ],
+    "average": [
+      {
+        "model": "Gradient boosting",
+        "roc_auc": 0.9125757346655531,
+        "pr_auc": 0.8680038110871485,
+        "brier": 0.09914207706871271,
+        "recall": 0.7897357793931002,
+        "precision": 0.7084558925356599,
+        "cost_per_100": 28.68159351912313
+      },
+      {
+        "model": "Logistic regression",
+        "roc_auc": 0.9436415986897663,
+        "pr_auc": 0.9013104079785753,
+        "brier": 0.08483013971358032,
+        "recall": 0.856386292834891,
+        "precision": 0.7316859295037664,
+        "cost_per_100": 22.06505724210631
+      },
+      {
+        "model": "Rule baseline",
+        "roc_auc": 0.9136431965642647,
+        "pr_auc": 0.8442536908517216,
+        "brier": NaN,
+        "recall": 0.7668881966078228,
+        "precision": 0.7337818366311516,
+        "cost_per_100": 28.65991392143805
+      }
+    ]
+  },
+  "chosen_model": "Logistic regression",
+  "threshold": {
+    "used": 0.25,
+    "empirical_best_walk_forward": 0.19,
+    "cost_at_best": 20.384615384615383,
+    "cost_at_used": 22.435897435897438
+  },
+  "test": {
+    "Rule baseline": {
+      "n": 526,
+      "delay_rate": 0.3365019011406844,
+      "roc_auc": 0.8934000291389442,
+      "pr_auc": 0.7908065229405765,
+      "precision": 0.7555555555555555,
+      "recall": 0.768361581920904,
+      "f1": 0.7619047619047619,
+      "accuracy": 0.8384030418250951,
+      "alerts_pct": 0.34220532319391633,
+      "tp": 136,
+      "fp": 44,
+      "fn": 41,
+      "tn": 305,
+      "cost_per_100": 31.749049429657795
+    },
+    "Logistic regression": {
+      "n": 526,
+      "delay_rate": 0.3365019011406844,
+      "roc_auc": 0.9235102714778302,
+      "pr_auc": 0.8614308602695746,
+      "precision": 0.7868852459016393,
+      "recall": 0.8135593220338984,
+      "f1": 0.8,
+      "accuracy": 0.8631178707224335,
+      "alerts_pct": 0.34790874524714827,
+      "tp": 144,
+      "fp": 39,
+      "fn": 33,
+      "tn": 310,
+      "cost_per_100": 26.23574144486692,
+      "brier": 0.10546075089893678,
+      "log_loss": 0.34184730051339546,
+      "calibration_error": 0.057617419664502616
+    },
+    "Gradient boosting": {
+      "n": 526,
+      "delay_rate": 0.3365019011406844,
+      "roc_auc": 0.9157479805092839,
+      "pr_auc": 0.8456731057183299,
+      "precision": 0.7814207650273224,
+      "recall": 0.807909604519774,
+      "f1": 0.7944444444444444,
+      "accuracy": 0.8593155893536122,
+      "alerts_pct": 0.34790874524714827,
+      "tp": 143,
+      "fp": 40,
+      "fn": 34,
+      "tn": 309,
+      "cost_per_100": 26.996197718631176,
+      "brier": 0.11853465330100744,
+      "log_loss": 0.3763464931097665,
+      "calibration_error": 0.07550652467542918
+    },
+    "Always alert": {
+      "n": 526,
+      "delay_rate": 0.3365019011406844,
+      "roc_auc": 0.5,
+      "pr_auc": 0.3365019011406844,
+      "precision": 0.3365019011406844,
+      "recall": 1.0,
+      "f1": 0.5035561877667141,
+      "accuracy": 0.3365019011406844,
+      "alerts_pct": 1.0,
+      "tp": 177,
+      "fp": 349,
+      "fn": 0,
+      "tn": 0,
+      "cost_per_100": 66.34980988593155
+    },
+    "Never alert": {
+      "n": 526,
+      "delay_rate": 0.3365019011406844,
+      "roc_auc": 0.5,
+      "pr_auc": 0.3365019011406844,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "accuracy": 0.6634980988593155,
+      "alerts_pct": 0.0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 177,
+      "tn": 349,
+      "cost_per_100": 100.95057034220531
+    }
+  },
+  "confidence_check": [
+    {
+      "confidence": "High",
+      "n": 455,
+      "accuracy": 0.8989010989010989,
+      "brier": 0.0901943422419282,
+      "mean_abs_error": 0.1686230886502697
+    },
+    {
+      "confidence": "Medium",
+      "n": 44,
+      "accuracy": 0.7727272727272727,
+      "brier": 0.16196121584625034,
+      "mean_abs_error": 0.30047122348743854
+    },
+    {
+      "confidence": "Low",
+      "n": 27,
+      "accuracy": 0.4074074074074074,
+      "brier": 0.2706531761306813,
+      "mean_abs_error": 0.4547627670644132
+    }
+  ],
+  "importance": [
+    {
+      "factor": "Traffic & queue",
+      "auc_drop": 0.30963311910813246,
+      "sd": 0.02206495002582693
+    },
+    {
+      "factor": "Berth capacity",
+      "auc_drop": 0.0835812841640631,
+      "sd": 0.010024666777541349
+    },
+    {
+      "factor": "Port identity",
+      "auc_drop": 0.020145802643010212,
+      "sd": 0.0038475108226664534
+    },
+    {
+      "factor": "Vessel size",
+      "auc_drop": 0.017762884539631693,
+      "sd": 0.003417753921602112
+    },
+    {
+      "factor": "Weather",
+      "auc_drop": 0.007078605000027027,
+      "sd": 0.0032021535032724833
+    },
+    {
+      "factor": "Labour",
+      "auc_drop": 0.005051289937890935,
+      "sd": 0.0014971480391833471
+    },
+    {
+      "factor": "Recent port backlog",
+      "auc_drop": 7.068892018631996e-05,
+      "sd": 0.0008352022308740508
+    },
+    {
+      "factor": "Timing & season",
+      "auc_drop": -0.00013058563881734503,
+      "sd": 0.0010623682269491153
+    }
+  ],
+  "per_port": [
+    {
+      "port": "Northbay",
+      "n": 180,
+      "delay_rate": 0.12222222222222222,
+      "roc_auc": 0.8794591484464902,
+      "recall": 0.6363636363636364,
+      "precision": 0.5185185185185185,
+      "brier": 0.07242438527903791
+    },
+    {
+      "port": "Eastgate",
+      "n": 156,
+      "delay_rate": 0.4166666666666667,
+      "roc_auc": 0.8994082840236687,
+      "recall": 0.8307692307692308,
+      "precision": 0.782608695652174,
+      "brier": 0.13210357511004775
+    },
+    {
+      "port": "Southreach",
+      "n": 97,
+      "delay_rate": 0.5051546391752577,
+      "roc_auc": 0.9489795918367346,
+      "recall": 0.8163265306122449,
+      "precision": 0.9523809523809523,
+      "brier": 0.12496584267891248
+    },
+    {
+      "port": "Westhaven",
+      "n": 93,
+      "delay_rate": 0.44086021505376344,
+      "roc_auc": 0.9324577861163226,
+      "recall": 0.8780487804878049,
+      "precision": 0.8,
+      "brier": 0.10436689425367693
+    }
+  ],
+  "learning_curve": [
+    {
+      "n": 150,
+      "roc_auc": 0.8915869392776778,
+      "brier": 0.1273467748899619
+    },
+    {
+      "n": 300,
+      "roc_auc": 0.9126835348776974,
+      "brier": 0.11524732440336811
+    },
+    {
+      "n": 500,
+      "roc_auc": 0.9161413562559695,
+      "brier": 0.11361587254434588
+    },
+    {
+      "n": 800,
+      "roc_auc": 0.9208715781975945,
+      "brier": 0.10781573906939797
+    },
+    {
+      "n": 1537,
+      "roc_auc": 0.9235102714778302,
+      "brier": 0.10546075089893678
+    }
+  ],
+  "error_analysis": {
+    "missed": 33,
+    "false_alarms": 39,
+    "missed_by_reason": {
+      "borderline: waited 24-36 h, just over the line": 16,
+      "queue built up faster than expected (ETA noise, bunching)": 13,
+      "storm not in forecast / forecast missing": 3,
+      "incoming-traffic data missing": 1
+    },
+    "missed_median_wait_h": 37.0
+  }
+}

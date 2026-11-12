@@ -1,0 +1,64 @@
+Development 1537 port calls (Nov 2024-Apr 2026) | Test 526 port calls (May-Oct 2026)
+
+[Walk-forward validation - used to choose the model]
+  Aug 2025-Oct 2025  (train 757, validate 311, delay rate 34%)
+     Rule baseline        ROC-AUC 0.909  Brier nan  recall 0.83  cost/100 28.9
+     Logistic regression  ROC-AUC 0.923  Brier 0.100  recall 0.87  cost/100 26.0
+     Gradient boosting    ROC-AUC 0.892  Brier 0.116  recall 0.79  cost/100 34.1
+  Nov 2025-Jan 2026  (train 1059, validate 254, delay rate 30%)
+     Rule baseline        ROC-AUC 0.916  Brier nan  recall 0.75  cost/100 29.1
+     Logistic regression  ROC-AUC 0.947  Brier 0.084  recall 0.87  cost/100 19.7
+     Gradient boosting    ROC-AUC 0.895  Brier 0.105  recall 0.76  cost/100 31.5
+  Feb 2026-Apr 2026  (train 1321, validate 215, delay rate 25%)
+     Rule baseline        ROC-AUC 0.916  Brier nan  recall 0.72  cost/100 27.9
+     Logistic regression  ROC-AUC 0.961  Brier 0.070  recall 0.83  cost/100 20.5
+     Gradient boosting    ROC-AUC 0.951  Brier 0.076  recall 0.81  cost/100 20.5
+  Average over folds:
+                     roc_auc  pr_auc  brier  recall  precision  cost_per_100
+model                                                                       
+Gradient boosting      0.913   0.868  0.099   0.790      0.708        28.682
+Logistic regression    0.944   0.901  0.085   0.856      0.732        22.065
+Rule baseline          0.914   0.844    NaN   0.767      0.734        28.660
+  -> chosen: Logistic regression
+  cost-optimal threshold across folds = 0.19 (cost 20.4/100) | theory 0.25 (cost 22.4/100)
+
+[Test - May-Oct 2026 (monsoon + peak season), never seen before]
+  Rule baseline        ROC-AUC 0.893  PR-AUC 0.791  Brier nan  recall 0.77  precision 0.76  F1 0.76  cost/100 31.7
+  Logistic regression  ROC-AUC 0.924  PR-AUC 0.861  Brier 0.105  recall 0.81  precision 0.79  F1 0.80  cost/100 26.2
+  Gradient boosting    ROC-AUC 0.916  PR-AUC 0.846  Brier 0.119  recall 0.81  precision 0.78  F1 0.79  cost/100 27.0
+  Always alert         ROC-AUC 0.500  PR-AUC 0.337  Brier nan  recall 1.00  precision 0.34  F1 0.50  cost/100 66.3
+  Never alert          ROC-AUC 0.500  PR-AUC 0.337  Brier nan  recall 0.00  precision 0.00  F1 0.00  cost/100 101.0
+
+[Confidence check - are high-confidence predictions really more reliable?]
+  High   n=455  accuracy 0.90  Brier 0.090
+  Medium n= 44  accuracy 0.77  Brier 0.162
+  Low    n= 27  accuracy 0.41  Brier 0.271
+
+Saved model bundle -> models/model_bundle.joblib
+
+[Which factors matter overall? AUC drop when shuffled]
+             factor  auc_drop    sd
+    Traffic & queue     0.310 0.022
+     Berth capacity     0.084 0.010
+      Port identity     0.020 0.004
+        Vessel size     0.018 0.003
+            Weather     0.007 0.003
+             Labour     0.005 0.001
+Recent port backlog     0.000 0.001
+    Timing & season    -0.000 0.001
+
+[Per-port test results]
+      port   n  delay_rate  roc_auc  recall  precision  brier
+  Northbay 180        0.12     0.88    0.64       0.52   0.07
+  Eastgate 156        0.42     0.90    0.83       0.78   0.13
+Southreach  97        0.51     0.95    0.82       0.95   0.12
+ Westhaven  93        0.44     0.93    0.88       0.80   0.10
+
+[Learning curve] [(150, 0.892), (300, 0.913), (500, 0.916), (800, 0.921), (1537, 0.924)]
+
+[Error analysis] missed delays: 33  false alarms: 39
+   16  borderline: waited 24-36 h, just over the line
+   13  queue built up faster than expected (ETA noise, bunching)
+    3  storm not in forecast / forecast missing
+    1  incoming-traffic data missing
+Saved metrics -> outputs/metrics.json, figures -> outputs/figures/
