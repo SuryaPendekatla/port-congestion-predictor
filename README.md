@@ -11,7 +11,7 @@ than **24 hours** before getting a berth. For every port call it returns:
 > Built for the Aiqon Jr AI Engineer take-home. Data is **synthetic** (a simulation of 4 fictional ports),
 > and the simulation is described in full below so the results can be judged fairly.
 
-**Live demo:** <add your Streamlit link here> · **Report:** [report/Report.pdf](report/Report.pdf)
+**Live demo:** https://port-congestion-surya.streamlit.app/ · **Report:** [report/Report.pdf](report/Report.pdf)
 
 ---
 
